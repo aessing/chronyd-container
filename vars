@@ -1,0 +1,14 @@
+# =============================================================================
+# Global variables
+# Chrony Time Server Container
+# https://github.com/aessing/chronyd-container
+# -----------------------------------------------------------------------------
+# Developer.......: Andre Essing (https://github.com/aessing)
+#                                (https://www.linkedin.com/in/aessing/)
+# -----------------------------------------------------------------------------
+# THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
+# EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
+# =============================================================================
+
+IMAGE_NAME="aessing/chronyd"
