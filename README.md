@@ -1,16 +1,11 @@
-# Project Title
+# Chrony Time Server Container
 
-A README file, along with a repository license, contribution guidelines, and a code of conduct, helps you communicate expectations and manage contributions to your project.
+This container is running time server Chrony on Alpine Linux to serve a time service inside of your network without needing permissions on the host.
 
-A README is often the first item a visitor will see when visiting your repository. README files typically include information on:
+## :rocket: Deployment
 
-- What the project does?
-- Why the project is useful?
-- How can users get started with the project?
-- Where can users get help with your project?
-- Who maintains and contributes to the project?
-
-:exclamation: Please also have a look at the [license](LICENSE) and if the license fits the needs of your project. :exclamation:
+I added a Kubernetes deployment file to deploy the container to a Kubernetes cluster. You can find the file in the `kubernetes` folder.
+The deployment.yaml file is just an example and uses Traefik as a reverse proxy. You can and probably have to change the deployment file to your needs.
 
 ---
 
