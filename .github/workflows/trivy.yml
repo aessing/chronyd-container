@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Trivy vulnerability scan
+name: Trivy Vulnerability Scan
 
 on:
   push:
@@ -14,12 +14,15 @@ on:
   schedule:
     - cron: '32 5 * * 2'
 
+env:
+  IMAGE_NAME: 'aessing/chronyd'
+
 permissions:
   contents: read
 
 jobs:
   build:
-    name: Trivy vulnerability scan
+    name: Vulnerability scan
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
@@ -31,14 +34,13 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/aessing/chronyd:trivy-${{ github.sha }} .
+          docker build -t docker.io/${{ env.IMAGE_NAME }}:trivy-${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@41f05d9ecffa2ed3f1580af306000f734b733e54
         with:
-          image-ref: 'docker.io/aessing/chronyd:trivy-${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
+          image-ref: 'docker.io/${{ env.IMAGE_NAME }}:trivy-${{ github.sha }}'
+          format: 'sarif'
           output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH'
 

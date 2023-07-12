@@ -20,6 +20,7 @@ FROM alpine:3.18
 ARG BUILD_DATE
 ENV TZ='UTC'
 EXPOSE 123/udp
+VOLUME ["/etc/chrony"]
 
 ###############################################################################
 # Set some information
@@ -34,7 +35,9 @@ LABEL org.opencontainers.image.created=${BUILD_DATE} \
 
 ################################################### ############################
 # Install chronyd and necessary packages
-RUN apk add --update --no-cache ca-certificates chrony tzdata \
+RUN apk --update --no-cache upgrade \
+    && apk add --update --no-cache ca-certificates chrony tzdata \
+    && rm -rf /var/cache/apk/* \
     && update-ca-certificates \
     && cp /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo $TZ > /etc/timezone \
@@ -43,10 +46,6 @@ RUN apk add --update --no-cache ca-certificates chrony tzdata \
 ###############################################################################
 # Copy files
 COPY container-files/chrony.conf /etc/chrony/chrony.conf
-
-###############################################################################
-# Healthcheck
-HEALTHCHECK CMD chronyc tracking || exit 1
 
 ###############################################################################
 # Start chronyd
