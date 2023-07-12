@@ -1,6 +1,22 @@
 # Chrony Time Server Container
 
+![](/.github/media/repository-open-graph-image.png)
+
 This container is running time server Chrony on Alpine Linux to serve a time service inside of your network without needing permissions on the host.
+
+### :hammer_and_wrench: Configuration
+
+You can mount the following volumes:
+
+| Volume      | Description                                                |
+| ----------- | ---------------------------------------------------------- |
+| /etc/chrony | For the server configuration (your chrony.conf lives here) |
+
+You can expose the following ports:
+
+| Port    | Description            |
+| ------- | ---------------------- |
+| 123/udp | Time server port (NTP) |
 
 ## :rocket: Deployment
 
