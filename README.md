@@ -1,6 +1,6 @@
 # Chrony Time Server Container
 
-![](media/../.github/media/repository-open-graph-image.png)
+![](/.github/media/repository-open-graph-image.png)
 
 This container is running time server Chrony on Alpine Linux to serve a time service inside of your network without needing permissions on the host.
 
