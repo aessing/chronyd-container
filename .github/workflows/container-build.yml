@@ -24,7 +24,7 @@ jobs:
           echo "RELEASE_DATE=$(date -u '+%Y-%m-%dT%H:%M:%S%z')" >> ${GITHUB_ENV}
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # https://github.com/docker/setup-qemu-action
       - name: Set up QEMU
