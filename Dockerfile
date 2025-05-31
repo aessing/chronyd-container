@@ -41,7 +41,9 @@ RUN apk --update --no-cache upgrade \
     && update-ca-certificates \
     && cp /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo $TZ > /etc/timezone \
-    && rm -f /etc/chrony/chrony.conf /run/chrony/*
+    && rm -f /etc/chrony/chrony.conf /run/chrony/* \
+    && chown -R chrony:chrony /var/run/chrony /var/lib/chrony \
+    && chmod 700 /var/run/chrony /var/lib/chrony
 
 ###############################################################################
 # Copy files
