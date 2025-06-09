@@ -12,7 +12,7 @@ on:
     # The branches below must be a subset of the branches above
     branches: ['main']
   schedule:
-    - cron: '32 5 * * 2'
+    - cron: '0 5 * * *'
 
 env:
   IMAGE_NAME: 'aessing/chronyd'
@@ -30,21 +30,50 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build an image from Dockerfile
         run: |
           docker build -t docker.io/${{ env.IMAGE_NAME }}:trivy-${{ github.sha }} .
 
+<<<<<<< HEAD
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5
+=======
+      - name: Run Trivy vulnerability scanner (image)
+        uses: aquasecurity/trivy-action@76071ef0d7ec797419534a183b498b4d6366cf37
+>>>>>>> 8b53ce9 (Repo Update 2025-06)
         with:
           image-ref: 'docker.io/${{ env.IMAGE_NAME }}:trivy-${{ github.sha }}'
           format: 'sarif'
-          output: 'trivy-results.sarif'
+          output: 'trivy-image-results.sarif'
           severity: 'CRITICAL,HIGH'
+          exit-code: '1'
 
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
+      - name: Run Trivy vulnerability scanner (requirements.txt)
+        uses: aquasecurity/trivy-action@76071ef0d7ec797419534a183b498b4d6366cf37
         with:
-          sarif_file: 'trivy-results.sarif'
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-py-results.sarif'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'
+
+      - name: Upload Trivy image scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@fca7ace96b7d713c7035871441bd52efbe39e27e
+        with:
+          sarif_file: 'trivy-image-results.sarif'
+          category: 'trivy-image'
+
+      - name: Upload Trivy Python scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@fca7ace96b7d713c7035871441bd52efbe39e27e
+        with:
+          sarif_file: 'trivy-py-results.sarif'
+          category: 'trivy-python'
+
+      - name: Docker cleanup
+        run: |
+          docker rmi docker.io/${{ env.IMAGE_NAME }}:trivy-${{ github.sha }} || true

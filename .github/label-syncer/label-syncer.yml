@@ -1,36 +1,51 @@
-- name: breaking change
+- name: status - needs triage
+  description: New issues/PRs that need review
+  color: 27ae60 # green
+- name: status - in progress
+  description: Actively being worked on
+  color: 2ecc40 # green
+- name: status - blocked
+  description: Blocked by something else
+  color: 16a085 # green
+- name: status - ready for review
+  description: Ready for code review
+  color: 1abc9c # green
+- name: type - enhancement
+  description: Improvements to existing features
+  color: 2986cc # blue
+- name: type - refactor
+  description: Code refactoring, no user-facing change
+  color: 1d76db # blue
+- name: type - test
+  description: Related to tests or test coverage
+  color: 0052cc # blue
+- name: type - ci
+  description: Continuous integration/config changes
+  color: 0074d9 # blue
+- name: type - chore
+  description: Maintenance, build, or non-feature work
+  color: 3399ff # blue
+- name: type - breaking change
   description: Changes that will break something in the next release
-  color: d876e3
-- name: bug
+  color: ff69b4 # pink
+- name: type - bug
   description: Something isn't working as expected
-  color: f67828
-- name: critical
-  description: Problems that are critical to fix immediately (e.g. data loss)
-  color: d80000
-- name: dependencies
-  description: Pull requests that update a dependency
-  color: 861a22
-- name: documentation
+  color: d80000 # red
+- name: type - documentation
   description: Improvements or additions to documentation
-  color: 0075ca
-- name: duplicate
-  description: This issue or pull request already exists elsewhere
-  color: D9D9D6
-- name: feature
-  description: New feature or request for a feature
-  color: f1dd38
-- name: help wanted
-  description: Extra attention is needed
-  color: 366735
-- name: idea
-  description: An idea that should be considered for future releases
-  color: 6aed9c
-- name: invalid
-  description: This doesn't seem right
-  color: 000000
-- name: question
-  description: Further information is requested or clarification is needed
-  color: 9d622b
+  color: 5dade2 # blue
+- name: priority - low
+  description: Lowest priority
+  color: ffc300 # orange
+- name: priority - medium
+  description: Medium priority
+  color: ff9900 # orange
+- name: priority - high
+  description: Highest priority
+  color: ff5733 # orange
+- name: good first issue
+  description: Good for newcomers
+  color: a259ff # purple
 - name: wontfix
   description: This will not be worked on
   color: ffffff
