@@ -38,13 +38,8 @@ jobs:
         run: |
           docker build -t docker.io/${{ env.IMAGE_NAME }}:trivy-${{ github.sha }} .
 
-<<<<<<< HEAD
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5
-=======
       - name: Run Trivy vulnerability scanner (image)
         uses: aquasecurity/trivy-action@76071ef0d7ec797419534a183b498b4d6366cf37
->>>>>>> 8b53ce9 (Repo Update 2025-06)
         with:
           image-ref: 'docker.io/${{ env.IMAGE_NAME }}:trivy-${{ github.sha }}'
           format: 'sarif'
