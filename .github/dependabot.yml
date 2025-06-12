@@ -17,8 +17,6 @@ updates:
     open-pull-requests-limit: 10
     pull-request-branch-name:
       separator: '-'
-    reviewers:
-      - 'aessing'
 
   # Maintain dependencies for docker images
   - package-ecosystem: 'docker'
@@ -37,5 +35,3 @@ updates:
     open-pull-requests-limit: 10
     pull-request-branch-name:
       separator: '-'
-    reviewers:
-      - 'aessing'
