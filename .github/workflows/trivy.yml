@@ -58,13 +58,13 @@ jobs:
           exit-code: '0'
 
       - name: Upload Trivy image scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@181d5eefc20863364f96762470ba6f862bdef56b
+        uses: github/codeql-action/upload-sarif@4e828ff8d448a8a6e532957b1811f387a63867e8
         with:
           sarif_file: 'trivy-image-results.sarif'
           category: 'trivy-image'
 
       - name: Upload Trivy Python scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@181d5eefc20863364f96762470ba6f862bdef56b
+        uses: github/codeql-action/upload-sarif@4e828ff8d448a8a6e532957b1811f387a63867e8
         with:
           sarif_file: 'trivy-py-results.sarif'
           category: 'trivy-python'
