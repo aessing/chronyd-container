@@ -39,7 +39,7 @@ jobs:
           docker build -t docker.io/${{ env.IMAGE_NAME }}:trivy-${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner (image)
-        uses: aquasecurity/trivy-action@dc5a429b52fcf669ce959baa2c2dd26090d2a6c4
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8
         with:
           image-ref: 'docker.io/${{ env.IMAGE_NAME }}:trivy-${{ github.sha }}'
           format: 'sarif'
@@ -48,7 +48,7 @@ jobs:
           exit-code: '0'
 
       - name: Run Trivy vulnerability scanner (requirements.txt)
-        uses: aquasecurity/trivy-action@dc5a429b52fcf669ce959baa2c2dd26090d2a6c4
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8
         with:
           scan-type: 'fs'
           scan-ref: '.'
