@@ -30,7 +30,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - name: Checkout code
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -58,13 +58,13 @@ jobs:
           exit-code: '0'
 
       - name: Upload Trivy image scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@e296a935590eb16afc0c0108289f68c87e2a89a5
+        uses: github/codeql-action/upload-sarif@fe4161a26a8629af62121b670040955b330f9af2
         with:
           sarif_file: 'trivy-image-results.sarif'
           category: 'trivy-image'
 
       - name: Upload Trivy Python scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@e296a935590eb16afc0c0108289f68c87e2a89a5
+        uses: github/codeql-action/upload-sarif@fe4161a26a8629af62121b670040955b330f9af2
         with:
           sarif_file: 'trivy-py-results.sarif'
           category: 'trivy-python'
